@@ -1,0 +1,572 @@
+# Grocery Store Project Directory Structure
+
+```
+grocery-store-app/
+├── README.md
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── .gitignore
+├── .env.example
+├── LICENSE
+│
+├── docs/
+│   ├── requirements/
+│   │   ├── functional-requirements.md
+│   │   ├── non-functional-requirements.md
+│   │   └── user-stories.md
+│   ├── architecture/
+│   │   ├── system-architecture.md
+│   │   ├── database-schema.md
+│   │   └── api-design.md
+│   ├── deployment/
+│   │   ├── deployment-guide.md
+│   │   ├── ci-cd-setup.md
+│   │   └── monitoring-setup.md
+│   └── assets/
+│       ├── wireframes/
+│       ├── er-diagram.png
+│       └── architecture-diagram.png
+│
+├── frontend/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── next.config.js
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── tsconfig.json
+│   ├── .env.local.example
+│   ├── .eslintrc.json
+│   ├── .prettierrc
+│   ├── jest.config.js
+│   ├── playwright.config.ts
+│   ├── Dockerfile
+│   ├── .dockerignore
+│   │
+│   ├── public/
+│   │   ├── images/
+│   │   │   ├── products/
+│   │   │   ├── categories/
+│   │   │   └── icons/
+│   │   ├── favicon.ico
+│   │   └── manifest.json
+│   │
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   ├── error.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   │
+│   │   │   ├── (auth)/
+│   │   │   │   ├── login/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── register/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── forgot-password/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   ├── products/
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── [id]/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── category/
+│   │   │   │       └── [slug]/
+│   │   │   │           └── page.tsx
+│   │   │   │
+│   │   │   ├── cart/
+│   │   │   │   └── page.tsx
+│   │   │   │
+│   │   │   ├── checkout/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── success/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   ├── profile/
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── orders/
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   └── [id]/
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── addresses/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── settings/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   ├── admin/
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── products/
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   ├── create/
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── [id]/
+│   │   │   │   │       ├── page.tsx
+│   │   │   │   │       └── edit/
+│   │   │   │   │           └── page.tsx
+│   │   │   │   ├── orders/
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   └── [id]/
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── customers/
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   └── [id]/
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── categories/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── analytics/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   └── api/
+│   │   │       ├── auth/
+│   │   │       │   └── route.ts
+│   │   │       ├── upload/
+│   │   │       │   └── route.ts
+│   │   │       └── webhooks/
+│   │   │           └── stripe/
+│   │   │               └── route.ts
+│   │   │
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   ├── Toast.tsx
+│   │   │   │   ├── Loading.tsx
+│   │   │   │   ├── Pagination.tsx
+│   │   │   │   └── index.ts
+│   │   │   │
+│   │   │   ├── layout/
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   └── AdminLayout.tsx
+│   │   │   │
+│   │   │   ├── auth/
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── RegisterForm.tsx
+│   │   │   │   ├── ForgotPasswordForm.tsx
+│   │   │   │   └── ProtectedRoute.tsx
+│   │   │   │
+│   │   │   ├── products/
+│   │   │   │   ├── ProductCard.tsx
+│   │   │   │   ├── ProductGrid.tsx
+│   │   │   │   ├── ProductDetails.tsx
+│   │   │   │   ├── ProductSearch.tsx
+│   │   │   │   ├── ProductFilters.tsx
+│   │   │   │   ├── ProductReviews.tsx
+│   │   │   │   └── ProductForm.tsx
+│   │   │   │
+│   │   │   ├── cart/
+│   │   │   │   ├── CartItem.tsx
+│   │   │   │   ├── CartSummary.tsx
+│   │   │   │   ├── CartDrawer.tsx
+│   │   │   │   └── AddToCartButton.tsx
+│   │   │   │
+│   │   │   ├── checkout/
+│   │   │   │   ├── CheckoutForm.tsx
+│   │   │   │   ├── PaymentMethod.tsx
+│   │   │   │   ├── ShippingAddress.tsx
+│   │   │   │   └── OrderSummary.tsx
+│   │   │   │
+│   │   │   ├── admin/
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   ├── ProductTable.tsx
+│   │   │   │   ├── OrderTable.tsx
+│   │   │   │   ├── CustomerTable.tsx
+│   │   │   │   ├── Analytics.tsx
+│   │   │   │   └── AdminSidebar.tsx
+│   │   │   │
+│   │   │   └── common/
+│   │   │       ├── ErrorBoundary.tsx
+│   │   │       ├── SEOHead.tsx
+│   │   │       ├── ImageUpload.tsx
+│   │   │       └── ConfirmDialog.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useCart.ts
+│   │   │   ├── useProducts.ts
+│   │   │   ├── useOrders.ts
+│   │   │   ├── useLocalStorage.ts
+│   │   │   └── useDebounce.ts
+│   │   │
+│   │   ├── lib/
+│   │   │   ├── api/
+│   │   │   │   ├── client.ts
+│   │   │   │   ├── auth.ts
+│   │   │   │   ├── products.ts
+│   │   │   │   ├── cart.ts
+│   │   │   │   ├── orders.ts
+│   │   │   │   └── admin.ts
+│   │   │   ├── auth/
+│   │   │   │   ├── jwt.ts
+│   │   │   │   ├── oauth.ts
+│   │   │   │   └── session.ts
+│   │   │   ├── utils/
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── helpers.ts
+│   │   │   │   ├── validation.ts
+│   │   │   │   ├── formatters.ts
+│   │   │   │   └── storage.ts
+│   │   │   └── types/
+│   │   │       ├── api.ts
+│   │   │       ├── auth.ts
+│   │   │       ├── product.ts
+│   │   │       ├── cart.ts
+│   │   │       ├── order.ts
+│   │   │       └── user.ts
+│   │   │
+│   │   ├── store/
+│   │   │   ├── index.ts
+│   │   │   ├── authSlice.ts
+│   │   │   ├── cartSlice.ts
+│   │   │   ├── productsSlice.ts
+│   │   │   └── uiSlice.ts
+│   │   │
+│   │   └── styles/
+│   │       ├── globals.css
+│   │       ├── components.css
+│   │       └── admin.css
+│   │
+│   └── __tests__/
+│       ├── components/
+│       ├── pages/
+│       ├── hooks/
+│       ├── utils/
+│       ├── e2e/
+│       │   ├── auth.spec.ts
+│       │   ├── products.spec.ts
+│       │   ├── cart.spec.ts
+│       │   └── checkout.spec.ts
+│       └── setup.ts
+│
+├── backend/
+│   ├── GroceryStore.sln
+│   ├── .dockerignore
+│   ├── Dockerfile
+│   ├── .gitignore
+│   ├── global.json
+│   │
+│   ├── src/
+│   │   ├── GroceryStore.API/
+│   │   │   ├── GroceryStore.API.csproj
+│   │   │   ├── Program.cs
+│   │   │   ├── appsettings.json
+│   │   │   ├── appsettings.Development.json
+│   │   │   ├── appsettings.Production.json
+│   │   │   │
+│   │   │   ├── Controllers/
+│   │   │   │   ├── AuthController.cs
+│   │   │   │   ├── ProductsController.cs
+│   │   │   │   ├── CategoriesController.cs
+│   │   │   │   ├── CartController.cs
+│   │   │   │   ├── OrdersController.cs
+│   │   │   │   ├── UsersController.cs
+│   │   │   │   ├── ReviewsController.cs
+│   │   │   │   └── AdminController.cs
+│   │   │   │
+│   │   │   ├── Middleware/
+│   │   │   │   ├── ExceptionMiddleware.cs
+│   │   │   │   ├── JwtMiddleware.cs
+│   │   │   │   ├── LoggingMiddleware.cs
+│   │   │   │   └── RateLimitingMiddleware.cs
+│   │   │   │
+│   │   │   ├── Filters/
+│   │   │   │   ├── AuthorizeAttribute.cs
+│   │   │   │   ├── ValidationFilter.cs
+│   │   │   │   └── AdminOnlyAttribute.cs
+│   │   │   │
+│   │   │   └── Extensions/
+│   │   │       ├── ServiceExtensions.cs
+│   │   │       ├── ApplicationExtensions.cs
+│   │   │       └── SwaggerExtensions.cs
+│   │   │
+│   │   ├── GroceryStore.Core/
+│   │   │   ├── GroceryStore.Core.csproj
+│   │   │   │
+│   │   │   ├── Entities/
+│   │   │   │   ├── BaseEntity.cs
+│   │   │   │   ├── User.cs
+│   │   │   │   ├── Product.cs
+│   │   │   │   ├── Category.cs
+│   │   │   │   ├── Order.cs
+│   │   │   │   ├── OrderItem.cs
+│   │   │   │   ├── CartItem.cs
+│   │   │   │   ├── Review.cs
+│   │   │   │   └── Address.cs
+│   │   │   │
+│   │   │   ├── Interfaces/
+│   │   │   │   ├── IRepository.cs
+│   │   │   │   ├── IUnitOfWork.cs
+│   │   │   │   ├── IAuthService.cs
+│   │   │   │   ├── IProductService.cs
+│   │   │   │   ├── IOrderService.cs
+│   │   │   │   ├── ICartService.cs
+│   │   │   │   ├── IEmailService.cs
+│   │   │   │   ├── IFileService.cs
+│   │   │   │   └── IPaymentService.cs
+│   │   │   │
+│   │   │   ├── DTOs/
+│   │   │   │   ├── Auth/
+│   │   │   │   │   ├── LoginDto.cs
+│   │   │   │   │   ├── RegisterDto.cs
+│   │   │   │   │   ├── TokenDto.cs
+│   │   │   │   │   └── UserDto.cs
+│   │   │   │   ├── Product/
+│   │   │   │   │   ├── ProductDto.cs
+│   │   │   │   │   ├── CreateProductDto.cs
+│   │   │   │   │   ├── UpdateProductDto.cs
+│   │   │   │   │   └── ProductSearchDto.cs
+│   │   │   │   ├── Order/
+│   │   │   │   │   ├── OrderDto.cs
+│   │   │   │   │   ├── CreateOrderDto.cs
+│   │   │   │   │   ├── OrderItemDto.cs
+│   │   │   │   │   └── OrderStatusDto.cs
+│   │   │   │   ├── Cart/
+│   │   │   │   │   ├── CartDto.cs
+│   │   │   │   │   ├── CartItemDto.cs
+│   │   │   │   │   └── AddToCartDto.cs
+│   │   │   │   └── Common/
+│   │   │   │       ├── ApiResponse.cs
+│   │   │   │       ├── PagedResult.cs
+│   │   │   │       └── ValidationResult.cs
+│   │   │   │
+│   │   │   ├── Enums/
+│   │   │   │   ├── OrderStatus.cs
+│   │   │   │   ├── PaymentMethod.cs
+│   │   │   │   ├── PaymentStatus.cs
+│   │   │   │   └── UserRole.cs
+│   │   │   │
+│   │   │   ├── Exceptions/
+│   │   │   │   ├── BaseException.cs
+│   │   │   │   ├── NotFoundException.cs
+│   │   │   │   ├── UnauthorizedException.cs
+│   │   │   │   ├── ValidationException.cs
+│   │   │   │   └── BusinessLogicException.cs
+│   │   │   │
+│   │   │   └── Constants/
+│   │   │       ├── AppConstants.cs
+│   │   │       ├── ErrorMessages.cs
+│   │   │       └── ValidationMessages.cs
+│   │   │
+│   │   ├── GroceryStore.Infrastructure/
+│   │   │   ├── GroceryStore.Infrastructure.csproj
+│   │   │   │
+│   │   │   ├── Data/
+│   │   │   │   ├── ApplicationDbContext.cs
+│   │   │   │   ├── DbInitializer.cs
+│   │   │   │   ├── Configurations/
+│   │   │   │   │   ├── UserConfiguration.cs
+│   │   │   │   │   ├── ProductConfiguration.cs
+│   │   │   │   │   ├── OrderConfiguration.cs
+│   │   │   │   │   └── CategoryConfiguration.cs
+│   │   │   │   └── Migrations/
+│   │   │   │
+│   │   │   ├── Repositories/
+│   │   │   │   ├── Repository.cs
+│   │   │   │   ├── UnitOfWork.cs
+│   │   │   │   ├── UserRepository.cs
+│   │   │   │   ├── ProductRepository.cs
+│   │   │   │   ├── OrderRepository.cs
+│   │   │   │   └── CategoryRepository.cs
+│   │   │   │
+│   │   │   ├── Services/
+│   │   │   │   ├── AuthService.cs
+│   │   │   │   ├── ProductService.cs
+│   │   │   │   ├── OrderService.cs
+│   │   │   │   ├── CartService.cs
+│   │   │   │   ├── EmailService.cs
+│   │   │   │   ├── FileService.cs
+│   │   │   │   ├── PaymentService.cs
+│   │   │   │   └── NotificationService.cs
+│   │   │   │
+│   │   │   ├── Identity/
+│   │   │   │   ├── JwtTokenService.cs
+│   │   │   │   ├── PasswordHasher.cs
+│   │   │   │   └── OAuthService.cs
+│   │   │   │
+│   │   │   └── External/
+│   │   │       ├── EmailProviders/
+│   │   │       │   ├── SendGridService.cs
+│   │   │       │   └── SmtpService.cs
+│   │   │       ├── PaymentProviders/
+│   │   │       │   ├── StripeService.cs
+│   │   │       │   └── PayPalService.cs
+│   │   │       └── StorageProviders/
+│   │   │           ├── S3Service.cs
+│   │   │           └── LocalFileService.cs
+│   │   │
+│   │   └── GroceryStore.Shared/
+│   │       ├── GroceryStore.Shared.csproj
+│   │       ├── Helpers/
+│   │       │   ├── StringHelper.cs
+│   │       │   ├── DateTimeHelper.cs
+│   │       │   ├── EncryptionHelper.cs
+│   │       │   └── ValidationHelper.cs
+│   │       ├── Extensions/
+│   │       │   ├── StringExtensions.cs
+│   │       │   ├── DateTimeExtensions.cs
+│   │       │   └── EnumExtensions.cs
+│   │       └── Utilities/
+│   │           ├── FileUtility.cs
+│   │           ├── ImageUtility.cs
+│   │           └── CacheUtility.cs
+│   │
+│   └── tests/
+│       ├── GroceryStore.UnitTests/
+│       │   ├── GroceryStore.UnitTests.csproj
+│       │   ├── Services/
+│       │   │   ├── AuthServiceTests.cs
+│       │   │   ├── ProductServiceTests.cs
+│       │   │   ├── OrderServiceTests.cs
+│       │   │   └── CartServiceTests.cs
+│       │   ├── Controllers/
+│       │   │   ├── AuthControllerTests.cs
+│       │   │   ├── ProductsControllerTests.cs
+│       │   │   └── OrdersControllerTests.cs
+│       │   └── Helpers/
+│       │       ├── TestFixture.cs
+│       │       └── MockData.cs
+│       │
+│       └── GroceryStore.IntegrationTests/
+│           ├── GroceryStore.IntegrationTests.csproj
+│           ├── Controllers/
+│           ├── Repositories/
+│           ├── Services/
+│           └── TestWebApplicationFactory.cs
+│
+├── database/
+│   ├── scripts/
+│   │   ├── init.sql
+│   │   ├── seed-data.sql
+│   │   └── migrations/
+│   ├── backups/
+│   └── docker/
+│       └── Dockerfile.postgres
+│
+├── infrastructure/
+│   ├── docker/
+│   │   ├── nginx/
+│   │   │   ├── nginx.conf
+│   │   │   ├── default.conf
+│   │   │   └── ssl/
+│   │   ├── postgresql/
+│   │   │   └── postgresql.conf
+│   │   └── redis/
+│   │       └── redis.conf
+│   │
+│   ├── kubernetes/
+│   │   ├── namespace.yaml
+│   │   ├── configmap.yaml
+│   │   ├── secrets.yaml
+│   │   ├── deployments/
+│   │   │   ├── frontend-deployment.yaml
+│   │   │   ├── backend-deployment.yaml
+│   │   │   └── database-deployment.yaml
+│   │   ├── services/
+│   │   │   ├── frontend-service.yaml
+│   │   │   ├── backend-service.yaml
+│   │   │   └── database-service.yaml
+│   │   └── ingress/
+│   │       └── ingress.yaml
+│   │
+│   ├── terraform/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   │   ├── providers.tf
+│   │   └── modules/
+│   │       ├── vpc/
+│   │       ├── database/
+│   │       ├── compute/
+│   │       └── storage/
+│   │
+│   └── ansible/
+│       ├── playbooks/
+│       ├── inventory/
+│       └── roles/
+│
+├── ci-cd/
+│   ├── github-actions/
+│   │   └── workflows/
+│   │       ├── ci.yml
+│   │       ├── cd-staging.yml
+│   │       ├── cd-production.yml
+│   │       └── security-scan.yml
+│   │
+│   ├── azure-devops/
+│   │   ├── azure-pipelines.yml
+│   │   ├── build-pipeline.yml
+│   │   └── release-pipeline.yml
+│   │
+│   └── scripts/
+│       ├── build.sh
+│       ├── test.sh
+│       ├── deploy.sh
+│       └── rollback.sh
+│
+├── monitoring/
+│   ├── prometheus/
+│   │   ├── prometheus.yml
+│   │   └── rules/
+│   ├── grafana/
+│   │   ├── dashboards/
+│   │   └── datasources/
+│   ├── alerting/
+│   │   └── alerts.yml
+│   └── logging/
+│       ├── filebeat.yml
+│       ├── logstash.conf
+│       └── elasticsearch/
+│
+└── tools/
+    ├── scripts/
+    │   ├── setup-dev.sh
+    │   ├── seed-database.sh
+    │   ├── backup-database.sh
+    │   └── generate-ssl.sh
+    ├── generators/
+    │   ├── entity-generator.js
+    │   └── api-client-generator.js
+    └── utilities/
+        ├── data-migration/
+        ├── performance-testing/
+        └── security-scanning/
+```
+
+## Key Features of This Structure:
+
+### 1. **Separation of Concerns**
+- **Frontend**: Complete Next.js 13+ app with App Router
+- **Backend**: Clean Architecture with .NET Core
+- **Infrastructure**: Separate deployment and configuration files
+- **Database**: Dedicated scripts and migrations
+
+### 2. **Scalability & Maintainability**
+- **Modular Components**: Easy to add/remove features
+- **Layer Separation**: Core, Infrastructure, API layers
+- **Shared Utilities**: Reusable code across projects
+- **Configuration Management**: Environment-specific settings
+
+### 3. **Development Workflow**
+- **Testing**: Comprehensive test structure for both FE/BE
+- **CI/CD**: Multiple pipeline options (GitHub Actions, Azure DevOps)
+- **Documentation**: Centralized docs with architecture diagrams
+- **Monitoring**: Production-ready observability stack
+
+### 4. **Production Ready**
+- **Containerization**: Docker configs for all services
+- **Orchestration**: Kubernetes manifests
+- **Infrastructure as Code**: Terraform modules
+- **Security**: SSL, authentication, and monitoring
+
+### 5. **Team Collaboration**
+- **Clear Structure**: Easy onboarding for new developers
+- **Git Workflow**: Proper .gitignore and branching support
+- **Code Quality**: Linting, testing, and formatting configs
+- **Documentation**: Comprehensive guides and API docs
+
+This structure supports the full 7-week development plan and can easily scale from MVP to enterprise-level application.
